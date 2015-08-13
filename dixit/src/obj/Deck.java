@@ -31,7 +31,14 @@ public class Deck {
 	public void shuffle() {
 		Collections.shuffle(deck);
 	}
-
+	
+	/**
+	 * Deals a card from the deck
+	 */
+	public void dealACard() {
+		deck.remove(deck.size() - 1);
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
