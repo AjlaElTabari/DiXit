@@ -1,6 +1,8 @@
 package obj;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 import common.Constants;
 
 /**
@@ -15,11 +17,19 @@ public class Deck {
 	private ArrayList<Card> deck = new ArrayList<>();
 	
 	public Deck() {
-		for (int i = 0; i < Constants.DECK_SIZE; i++) {
+		for (int i = Constants.DECK_STARTING_ID; i <= Constants.DECK_SIZE; i++) {
 			Card card =  new Card(card_id);
 			deck.add(card);
 			card_id++;
 		}
+	}
+	
+	/**
+	 * Shuffles deck. 
+	 * @param deck
+	 */
+	public void shuffle() {
+		Collections.shuffle(deck);
 	}
 
 	/* (non-Javadoc)
