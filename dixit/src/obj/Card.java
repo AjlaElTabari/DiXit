@@ -34,6 +34,32 @@ public class Card {
 		this.id = id;
 		this.image = image;
 	}
+	
+	
+	// Getters
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
+
+	public boolean isUsed() {
+		return used;
+	}
+
+	public void setUsed(boolean used) {
+		this.used = used;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

@@ -1,67 +1,67 @@
 package client;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public class Client extends JFrame {
-	private static final long serialVersionUID = -3135347825165707732L;
-	private static Map<Integer, BufferedImage> cards = new HashMap<>();
+import obj.Card;
 
-	// Panels
-	private JPanel pnlMain = new JPanel();
-	private JPanel pnlHeader = new JPanel();
-	private JPanel pnlHand = new JPanel();
-	private JPanel pnlScores = new JPanel();
+import common.Constants;
 
-	// Buttons
-	private JButton btnDice = new JButton("Roll");
-	private JButton btnDraw = new JButton("Draw");
+/**
+ * Represents a client in the client-server architecture of DiXit card game.
+ * Connects to the server, and creates a new player. Receives from the server
+ * first dealing of HAND_SIZE cards.
+ * 
+ * @author ajla.eltabari
+ *
+ */
+public class Client {
 	
-	/**
-	 * Constructor that makes Players window for DiXit game. 
-	 */
-	public Client() {
-		// Panels Layouts
-		pnlMain.setLayout(new BorderLayout());
-		pnlHeader.setLayout(new BorderLayout());
-		pnlHand.setLayout(new FlowLayout());
-
-		// Main panel
-		pnlMain.add(pnlHeader, BorderLayout.NORTH);
-		pnlMain.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-		// Header panel
-		pnlHeader.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		pnlHeader.add(btnDice, BorderLayout.WEST);
-		pnlHeader.add(btnDraw, BorderLayout.EAST);
-
-		// Hand panel
-		pnlHand.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
-		// Scores panel
-		pnlScores.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
-		// Main panel visual settings
-		add(pnlMain);
-		setTitle("DiXit");
-		setSize(1024, 960);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
-	}
+	// Client attributes
+	private static ArrayList<Integer> cardsIds = new ArrayList<>();
+	private static ArrayList<Card> hand = new ArrayList<>();
 
 	public static void main(String[] args) {
-		// filling map with cards ids and images
-		//HelperMethods.loadCardImages(cards);
-		new Client();
+
+		try {
+			// Declaring and initializing socket to be able to connect to the server.
+			Socket client = new Socket(Constants.SERVER_IP, Constants.SERVER_PORT);
+			
+			// Declaring and initializing Buffered reader to be able to read data from the server.
+			BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			String line = "";
+			
+			// Expecting first dealing of HAND_SIZE cards from the server.
+			while (reader.ready()) {
+				line = reader.readLine();
+				cardsIds.add(Integer.parseInt(line));
+			}
+			
+			for (int i = Constants.FIRST_INDEX; i <= Constants.HAND_SIZE; i++) {
+				JButton btnCard = new JButton();
+				BufferedImage buttonIcon;
+				btnCard.setBorder(BorderFactory.createEmptyBorder());
+				btnCard.setContentAreaFilled(false);
+				
+				
+				buttonIcon = cards.get(i);
+				btnCard = new JButton(new ImageIcon(buttonIcon));
+				pnlHand.add(btnCard);
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
+
 }
