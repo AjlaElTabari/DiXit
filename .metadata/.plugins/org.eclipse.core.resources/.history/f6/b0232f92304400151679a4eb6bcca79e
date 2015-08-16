@@ -1,0 +1,101 @@
+package connectivity;
+
+import java.awt.Color;
+import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+
+import obj.Player;
+
+import common.Constants;
+
+/**
+ * Represents a server that manage DiXit multiplayer game. Server is waiting for
+ * minimum four players to connect, and will be responsible for cards dealing,
+ * points scoring and transferring message between players.
+ * 
+ * @author ajla.eltabari
+ *
+ */
+public class Server {
+	// Server attributes
+	private static ServerSocket server;
+	private static ArrayList<Player> playerList;
+
+	public static void startServer() {
+		try {
+			server = new ServerSocket(Constants.SERVER_PORT);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		playerList = new ArrayList<>();
+		System.out.println("Server started.");
+	}
+
+	public static void startLookingForClients() {
+		try {
+			while (true) {
+				Socket client = server.accept();
+				System.out.println("Client found!");
+
+				ClientThread ct = new ClientThread(client);
+				ct.start();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	static class ClientThread extends Thread {
+		private Socket client;
+
+		public ClientThread(Socket client) {
+			this.client = client;
+		}
+
+		@Override
+		public void run() {
+
+			String nickname = "";
+			
+			Player player = new Player(client);
+			playerList.add(player);
+			ListUpdater.updateListOfPlayers();
+			System.out.println("Player list updated with new player.");
+			System.out.println("List: " + playerList);
+
+			try {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(
+						client.getInputStream()));
+				
+				nickname = reader.readLine();
+
+				while (true) {
+					String msg = reader.readLine();
+					System.out.println("Msg received: " + msg);
+
+					int diffX = Integer.parseInt(msg.split(" ")[0]);
+					int diffY = Integer.parseInt(msg.split(" ")[1]);
+
+					for (Player p : playerList) {
+						if (p.getSocket() == client) {
+							p.changeCoordinates(diffX, diffY);
+						}
+					}
+					System.out.println(playerList);
+
+					ListUpdater.updateListOfPlayers();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+}

@@ -1,0 +1,56 @@
+package login;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+/**
+ * Represents login window for DiXit game. Asks player to enter a nickname.
+ * 
+ * @author ajla
+ *
+ */
+public class LoginWindow extends JFrame {
+
+	private static final long serialVersionUID = -598662940651495153L;
+	private JPanel pnlMain = new JPanel();
+	private JPanel pnlFooter = new JPanel();
+	private JPanel pnlHeader = new JPanel();
+
+	public LoginWindow() {
+		
+		// Pannels layouts
+		pnlMain.setLayout(new BorderLayout());
+		pnlFooter.setLayout(new FlowLayout());
+		pnlHeader.setLayout(new FlowLayout());
+		
+		// pnlMain settings
+		pnlMain.
+	}
+	
+	private class BgPanel extends JPanel {
+	    Image bg = new ImageIcon("water.jpg").getImage();
+	    @Override
+	    public void paintComponent(Graphics g) {
+	        g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+	    }
+	}
+
+	private class LoginPanel extends JPanel {
+	    LoginPanel() {
+	        setOpaque(false);
+	        setLayout(new FlowLayout());
+	        add(new JLabel("username: ")); add(new JTextField(10));
+	        add(new JLabel("password: ")); add(new JPasswordField(10));
+	    }
+	}
+
+}

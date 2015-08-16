@@ -1,0 +1,15 @@
+1439715924012	Move compilation unit
+1439715941115	Move compilation unit
+1439715956120	Delete element
+1439715966812	Rename package 'client'
+1439715986195	Rename package 'client.images'
+1439733877633	Rename method 'connectTo'
+1439734853739	Rename field 'START_POINTS'
+1439737301848	Delete element
+1439737651564	Delete element
+1439737663236	Rename type 'FrameTestBase'
+1439737778148	Rename type 'BgPanel'
+1439737826971	Rename local variable 'bgPanel'
+1439737835986	Rename local variable 't'
+1439737854076	Rename field 'bg'
+1439740984752	Rename local variable 'in'

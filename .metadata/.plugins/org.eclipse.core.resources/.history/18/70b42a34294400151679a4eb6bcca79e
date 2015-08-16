@@ -1,0 +1,27 @@
+package login;
+
+import java.awt.*;
+import javax.swing.*;
+
+class BackgroundPanel extends JPanel {
+
+	private static final long serialVersionUID = -7107974006273581347L;
+	Image imgBackground = new ImageIcon("src/login/dixit.jpg").getImage();
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(imgBackground, 0, 0, getWidth(), getHeight(), this);
+    }
+}
+
+class LoginPanel extends JPanel {
+	private static final long serialVersionUID = -4550434916034393583L;
+
+	LoginPanel() {
+        setOpaque(false);
+        setLayout(new FlowLayout());
+        add(new JLabel("nickname: ")); add(new JTextField(10));
+    }
+    
+    
+}
+

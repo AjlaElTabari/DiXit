@@ -1,0 +1,13 @@
+package login;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class LoginWindow extends JFrame {
+
+	private static final long serialVersionUID = -598662940651495153L;
+	private JPanel pnlMain = new JPanel();
+	private JPanel pnlfooter = new JPanel();
+	private JPanel pnlHeader = new JPanel();
+	
+}

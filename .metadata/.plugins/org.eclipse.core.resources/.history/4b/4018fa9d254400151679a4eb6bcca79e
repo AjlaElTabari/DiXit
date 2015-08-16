@@ -1,0 +1,28 @@
+package login;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+/**
+ * Represents login window for DiXit game. Asks player to enter a nickname.
+ * 
+ * @author ajla
+ *
+ */
+public class LoginWindow extends JFrame {
+
+	private static final long serialVersionUID = -598662940651495153L;
+	private JPanel pnlMain = new JPanel();
+	private JPanel pnlFooter = new JPanel();
+	private JPanel pnlHeader = new JPanel();
+
+	public LoginWindow() {
+		pnlMain.setLayout(new BorderLayout());
+		pnlFooter.setLayout(new FlowLayout());
+		pnlFooter.pnlHeader(new FlowLayout());
+	}
+
+}

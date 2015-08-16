@@ -1,5 +1,12 @@
 package obj;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+
+import common.Constants;
+
 /**
  * Represents the player of the game. Stores data related to the player.
  * 
@@ -7,22 +14,36 @@ package obj;
  *
  */
 public class Player {
-	// Class constants
-	private static final int START_POINTS = 0;
-	private static final boolean STARTING_PLAYER = false;
 
 	// Player attributes
 	private String nickname;
 	private boolean isCurrentPlayer;
 	private int score;
+	private Socket socket;
+	private BufferedWriter writer;
 
 	/**
 	 * Constructor that makes player. Requires nickname and isStartingPlayer
-	 * flag.
+	 * flag, and socket for connection to the server.
 	 * 
 	 * @param nickname
 	 */
-	public Player(String nickname) {
+	public Player(String nickname, boolean isCurrentPlayer, Socket socket) {
+		this.nickname = nickname;
+		this.isCurrentPlayer = isCurrentPlayer;
+		this.score = Constants.STARTING_POINTS;
+		this.socket = socket;
 
+		// Buffered writer initialization, so player can be able to send message
+		// to the server. Server will distribute that message to all other
+		// players.
+		try {
+			writer = new BufferedWriter(new OutputStreamWriter(
+					socket.getOutputStream()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			writer = null;
+		}
 	}
 }

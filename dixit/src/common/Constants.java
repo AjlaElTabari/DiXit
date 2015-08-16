@@ -7,4 +7,8 @@ public class Constants {
 	public static final int FIRST_INDEX = 1;
 	public static final String SERVER_IP = "localhost";
 	public static final int SERVER_PORT = 2706;
+	public static final int STARTING_POINTS = 0;
+	public static final boolean STARTING_PLAYER = false;
+	public static final String LOGIN_BACKGROUND_IMAGE = "src/login/dixit.jpg";
+	public static final String CARDS_IMAGES_PATH = "src/gui/images/";
 }

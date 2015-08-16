@@ -1,0 +1,20 @@
+package login;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class LoginWindow extends JFrame {
+    public static void main(String args[]) {
+        JPanel bgPanel = new BgPanel();
+        bgPanel.setLayout(new BorderLayout());
+        bgPanel.add(new LoginPanel(), BorderLayout.CENTER);
+
+        LoginWindow t = new LoginWindow();
+        t.setContentPane(bgPanel);
+        t.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        t.setSize(800, 800);
+        t.setVisible(true);
+    }
+}

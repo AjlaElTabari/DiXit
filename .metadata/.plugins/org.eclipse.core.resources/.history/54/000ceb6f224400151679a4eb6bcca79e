@@ -1,0 +1,33 @@
+package obj;
+
+import java.net.Socket;
+
+import common.Constants;
+
+/**
+ * Represents the player of the game. Stores data related to the player.
+ * 
+ * @author ajla.eltabari
+ *
+ */
+public class Player {
+	
+	// Player attributes
+	private String nickname;
+	private boolean isCurrentPlayer;
+	private int score;
+	private Socket socket;
+
+	/**
+	 * Constructor that makes player. Requires nickname and isStartingPlayer
+	 * flag, and socket for connection to the server.
+	 * 
+	 * @param nickname
+	 */
+	public Player(String nickname, boolean isCurrentPlayer, Socket socket) {
+		this.nickname = nickname;
+		this.isCurrentPlayer = isCurrentPlayer;
+		this.score = Constants.STARTING_POINTS;
+		this.socket = socket;
+	}
+}

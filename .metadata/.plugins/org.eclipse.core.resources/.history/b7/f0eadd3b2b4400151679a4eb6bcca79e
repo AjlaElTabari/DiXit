@@ -1,0 +1,11 @@
+package main;
+
+import login.LoginWindow;
+import connectivity.Client;
+
+public class ClientMain {
+	public static void main(String[] args) {
+		LoginWindow.startTheGame();
+		Client.connect();
+	}
+}

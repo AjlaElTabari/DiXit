@@ -1,0 +1,30 @@
+package server;
+
+import java.net.ServerSocket;
+import java.util.ArrayList;
+
+import obj.Deck;
+import obj.Player;
+
+/**
+ * Represents a server that manage DiXit multiplayer game. Server is waiting for
+ * minimum four players to connect, and will be responsible for cards dealing,
+ * points scoring and transferring message between players.
+ * 
+ * @author ajla.eltabari
+ *
+ */
+public class Server {
+	// Server attributes
+	private static Deck deck = new Deck();
+	private static ServerSocket server;
+	private static ArrayList<Player> playerList;
+
+	public static void main(String[] args) {
+		deck.shuffle();
+		System.out.println(deck);
+		
+		
+	}
+
+}

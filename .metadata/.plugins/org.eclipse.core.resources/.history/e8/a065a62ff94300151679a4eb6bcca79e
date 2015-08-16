@@ -1,0 +1,41 @@
+package main;
+
+import gui.PlayerWindow;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.ArrayList;
+
+import common.Constants;
+
+public class ClientMain {
+	// Client attributes
+	private static ArrayList<Integer> cardsIds = new ArrayList<>();
+
+	public static void main(String[] args) {
+
+		try {
+			// Declaring and initializing socket to be able to connect to the server.
+			Socket client = new Socket(Constants.SERVER_IP, Constants.SERVER_PORT);
+			
+			// Declaring and initializing Buffered reader to be able to read data from the server.
+			BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			String line = "";
+			
+			// Expecting first dealing of HAND_SIZE cards from the server.
+			while (reader.ready()) {
+				line = reader.readLine();
+				cardsIds.add(Integer.parseInt(line));
+			}
+			
+			new PlayerWindow(cardsIds);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+}

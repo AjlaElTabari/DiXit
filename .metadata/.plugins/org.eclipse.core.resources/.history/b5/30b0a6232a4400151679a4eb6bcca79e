@@ -1,0 +1,36 @@
+package login;
+
+import java.awt.*;
+import javax.swing.*;
+import common.Constants;
+
+class BackgroundPanel extends JPanel {
+
+	private static final long serialVersionUID = -7107974006273581347L;
+	Image imgBackground = new ImageIcon(Constants.LOGIN_BACKGROUND_IMAGE).getImage();
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(imgBackground, 0, 0, getWidth(), getHeight(), this);
+    }
+}
+
+class LoginPanel extends JPanel {
+	private static final long serialVersionUID = -4550434916034393583L;
+	private JLabel lblNickname = new JLabel("nickname: ");
+	private JTextField txtNickname = new JTextField(20);
+	private JButton btnEnterTheGame = new JButton("Enter the game");
+
+	LoginPanel() {
+        setOpaque(false);
+        setLayout(new FlowLayout());
+        
+        add(lblNickname); 
+        add(txtNickname);
+        add(btnEnterTheGame);
+        
+        
+    }
+    
+    
+}
+
