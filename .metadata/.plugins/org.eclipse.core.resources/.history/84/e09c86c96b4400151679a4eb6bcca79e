@@ -48,7 +48,7 @@ public class Server {
 	}
 
 	/**
-	 * Waiting for client to connect and starts a new thread for every player.
+	 * 
 	 */
 	public static void startLookingForClients() {
 		try {
@@ -64,15 +64,6 @@ public class Server {
 		}
 	}
 
-	/**
-	 * Inner class that represents separate thread that will be given to every
-	 * single player. When thread is initialized (when client/player is
-	 * connected), server will send first HAND_SIZE cards, and receive players
-	 * nickname from the login screen.
-	 * 
-	 * @author ajla
-	 *
-	 */
 	static class ClientThread extends Thread {
 		private Socket client;
 
@@ -98,10 +89,6 @@ public class Server {
 					writer.flush();
 				}
 
-				// Connection shouldn't be closed, because there is need for
-				// further communication. So after first HAND_SIZE cards, server
-				// will send keyword "END" as sign that it is the end of
-				// connections for now.
 				writer.write("END");
 				writer.newLine();
 				writer.flush();

@@ -28,13 +28,6 @@ public class Server {
 	private static ArrayList<Player> playerList;
 	private static Deck deck;
 
-	/**
-	 * Initializing socket for client - server communication, deck for play and
-	 * initializing array list of players. Starting server. Should be called
-	 * from the main method.
-	 * 
-	 * @param deckFromMain
-	 */
 	public static void startServer(Deck deckFromMain) {
 		try {
 			server = new ServerSocket(Constants.SERVER_PORT);
@@ -47,9 +40,6 @@ public class Server {
 		System.out.println("Server started.");
 	}
 
-	/**
-	 * Waiting for client to connect and starts a new thread for every player.
-	 */
 	public static void startLookingForClients() {
 		try {
 			while (true) {
@@ -64,15 +54,6 @@ public class Server {
 		}
 	}
 
-	/**
-	 * Inner class that represents separate thread that will be given to every
-	 * single player. When thread is initialized (when client/player is
-	 * connected), server will send first HAND_SIZE cards, and receive players
-	 * nickname from the login screen.
-	 * 
-	 * @author ajla
-	 *
-	 */
 	static class ClientThread extends Thread {
 		private Socket client;
 
@@ -86,26 +67,22 @@ public class Server {
 			String nickname = "";
 
 			try {
-
+				
 				// Dealing first HAND_SIZE cards to the player.
 				BufferedWriter writer = new BufferedWriter(
 						new OutputStreamWriter(client.getOutputStream()));
-
+				
 				for (int i = Constants.FIRST_INDEX; i <= Constants.HAND_SIZE; i++) {
 					int cardId = deck.dealACard();
 					writer.write(cardId + "");
 					writer.newLine();
 					writer.flush();
 				}
-
-				// Connection shouldn't be closed, because there is need for
-				// further communication. So after first HAND_SIZE cards, server
-				// will send keyword "END" as sign that it is the end of
-				// connections for now.
+				
 				writer.write("END");
 				writer.newLine();
 				writer.flush();
-
+				
 				// Reading nickname from the login screen.
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(client.getInputStream()));

@@ -33,7 +33,6 @@ public class Client {
 		try {
 			// Declaring and initializing socket to be able to connect to the
 			// server.
-			@SuppressWarnings("resource")
 			Socket client = new Socket(Constants.SERVER_IP,
 					Constants.SERVER_PORT);
 			// Declaring and initializing Buffered reader to be able to read

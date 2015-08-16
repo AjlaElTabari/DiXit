@@ -98,10 +98,6 @@ public class Server {
 					writer.flush();
 				}
 
-				// Connection shouldn't be closed, because there is need for
-				// further communication. So after first HAND_SIZE cards, server
-				// will send keyword "END" as sign that it is the end of
-				// connections for now.
 				writer.write("END");
 				writer.newLine();
 				writer.flush();
