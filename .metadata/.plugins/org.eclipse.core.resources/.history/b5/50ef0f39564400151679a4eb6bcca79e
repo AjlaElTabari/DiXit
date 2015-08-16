@@ -35,6 +35,7 @@ public class Client {
 			// server.
 			Socket client = new Socket(Constants.SERVER_IP,
 					Constants.SERVER_PORT);
+			System.out.println("Aaaaaaaaaaaaaaaaaaaa");
 			// Declaring and initializing Buffered reader to be able to read
 			// data from the server.
 			BufferedReader reader = new BufferedReader(new InputStreamReader(

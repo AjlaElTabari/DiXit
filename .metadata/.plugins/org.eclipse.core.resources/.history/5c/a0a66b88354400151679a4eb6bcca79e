@@ -35,6 +35,7 @@ public class Client {
 			// server.
 			Socket client = new Socket(Constants.SERVER_IP,
 					Constants.SERVER_PORT);
+
 			// Declaring and initializing Buffered reader to be able to read
 			// data from the server.
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -42,10 +43,8 @@ public class Client {
 			String line = "";
 
 			// Expecting first dealing of HAND_SIZE cards from the server.
-			System.out.println(reader.ready());
 			while (reader.ready()) {
 				line = reader.readLine();
-				System.out.println("Client " + line);
 				cardsIds.add(Integer.parseInt(line));
 			}
 			
@@ -58,7 +57,6 @@ public class Client {
 			writer.newLine();
 			writer.flush();
 
-			System.out.println(cardsIds);
 			new PlayerWindow(cardsIds, nickname);
 
 		} catch (IOException e) {

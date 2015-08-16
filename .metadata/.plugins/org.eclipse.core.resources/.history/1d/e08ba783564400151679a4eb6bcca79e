@@ -78,11 +78,13 @@ public class Server {
 				BufferedWriter writer = new BufferedWriter(
 						new OutputStreamWriter(client.getOutputStream()));
 
-				for (int i = Constants.FIRST_INDEX; i <= Constants.HAND_SIZE; i++) {
-					int cardId = deck.dealACard();
-					writer.write(cardId + "");
-					writer.newLine();
-					writer.flush();
+				while (true) {
+					for (int i = Constants.FIRST_INDEX; i <= Constants.HAND_SIZE; i++) {
+						int cardId = deck.dealACard();
+						writer.write(cardId + "");
+						writer.newLine();
+						writer.flush();
+					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

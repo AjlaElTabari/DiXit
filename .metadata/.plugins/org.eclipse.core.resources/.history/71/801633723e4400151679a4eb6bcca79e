@@ -10,7 +10,7 @@ public class ServerMain {
 		deck.shuffle();
 		System.out.println(deck);
 		
-		Server.startServer(deck);
+		Server.startServer();
 		Server.startLookingForClients();
 
 	}

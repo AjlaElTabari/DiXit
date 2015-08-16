@@ -26,12 +26,10 @@ public class Server {
 	// Server attributes
 	private static ServerSocket server;
 	private static ArrayList<Player> playerList;
-	private static Deck deck;
 
-	public static void startServer(Deck deckFromMain) {
+	public static void startServer(Deck deck) {
 		try {
 			server = new ServerSocket(Constants.SERVER_PORT);
-			deck = deckFromMain;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -67,22 +65,24 @@ public class Server {
 			String nickname = "";
 
 			try {
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(client.getInputStream()));
-
+				BufferedReader reader = new BufferedReader(new InputStreamReader(
+						client.getInputStream()));
+				
 				nickname = reader.readLine();
-
+				
 				Player player = new Player(nickname, false, client);
 				playerList.add(player);
-
-				BufferedWriter writer = new BufferedWriter(
-						new OutputStreamWriter(client.getOutputStream()));
-
+				
+				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+						client.getOutputStream()));
+				
 				for (int i = Constants.FIRST_INDEX; i <= Constants.HAND_SIZE; i++) {
 					int cardId = deck.dealACard();
 					writer.write(cardId + "");
 					writer.newLine();
 					writer.flush();
+					
+					System.out.println("Server " + cardId);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -3,7 +3,7 @@ package obj;
 import java.awt.image.BufferedImage;
 
 /**
- * Represents a card for DiXit game.
+ * Represents a card for DiXit board game
  * 
  * @author ajla.eltabari
  *
