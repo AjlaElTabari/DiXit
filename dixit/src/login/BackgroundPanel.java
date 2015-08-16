@@ -43,10 +43,8 @@ class LoginPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Client.connect(txtNickname.getText());
-				
 				LoginWindow.close();
 			}
-
 		});
 
 		add(lblNickname);

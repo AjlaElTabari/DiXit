@@ -67,23 +67,31 @@ public class Server {
 			String nickname = "";
 
 			try {
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(client.getInputStream()));
-
-				nickname = reader.readLine();
-
-				Player player = new Player(nickname, false, client);
-				playerList.add(player);
-
+				
+				// Dealing first HAND_SIZE cards to the player.
 				BufferedWriter writer = new BufferedWriter(
 						new OutputStreamWriter(client.getOutputStream()));
-
+				
 				for (int i = Constants.FIRST_INDEX; i <= Constants.HAND_SIZE; i++) {
 					int cardId = deck.dealACard();
 					writer.write(cardId + "");
 					writer.newLine();
 					writer.flush();
 				}
+				
+				writer.write("END");
+				writer.newLine();
+				writer.flush();
+				
+				// Reading nickname from the login screen.
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(client.getInputStream()));
+
+				nickname = reader.readLine();
+				System.out.println(nickname);
+				Player player = new Player(nickname, false, client);
+				playerList.add(player);
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

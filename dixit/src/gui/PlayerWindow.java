@@ -4,19 +4,25 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import obj.Card;
+
+import common.Constants;
 
 /**
  * GUI representation of players window. Allows player to see his/hers card,
@@ -35,26 +41,31 @@ public class PlayerWindow extends JFrame {
 	private JPanel pnlHeader = new JPanel();
 	private JPanel pnlHand = new JPanel();
 	private JPanel pnlScores = new JPanel();
+	private ImagePanel imgPnlBunnies = new ImagePanel();
 
 	// Buttons
-	private JButton btnDice = new JButton("Roll");
+	private JButton btnNickname = new JButton();
 	private JButton btnDraw = new JButton("Draw");
-	
-	// Labels
-	private JLabel lblNickname = new JLabel();
+
+	// BufferedImage
+	private BufferedImage imgBunnies;
 
 	/**
 	 * Constructor that makes Players window for DiXit game.
 	 */
 	public PlayerWindow(ArrayList<Integer> cardsIds, String nickname) {
-
-		// Loading all images to the map.
+		System.out.println("player window");
+		// Loading all images to the map
 		HelperMethods.loadCardImages(cards);
 		System.out.println(cards);
 		
 		// Buttons settings
-		btnDice.setPreferredSize(new Dimension(120, 60));
-		btnDraw.setPreferredSize(new Dimension(120, 60));
+		btnNickname.setPreferredSize(new Dimension(124, 100));
+		btnDraw.setPreferredSize(new Dimension(124, 100));
+		
+		// Setting button text to the actual nickname
+		btnNickname.setText(nickname);
+		
 		// Panels Layouts
 		pnlMain.setLayout(new BorderLayout());
 		pnlHeader.setLayout(new BorderLayout());
@@ -64,18 +75,13 @@ public class PlayerWindow extends JFrame {
 		pnlMain.add(pnlHeader, BorderLayout.NORTH);
 		pnlMain.add(pnlHand, BorderLayout.SOUTH);
 		pnlMain.add(pnlScores, BorderLayout.CENTER);
-		pnlMain.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 		// Header panel
-		pnlHeader.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		pnlHeader.add(btnDice, BorderLayout.WEST);
+		pnlHeader.add(btnNickname, BorderLayout.WEST);
 		pnlHeader.add(btnDraw, BorderLayout.EAST);
-		// setting lblNickname to actual nickname
-		lblNickname.setText(nickname);
-		pnlHeader.add(lblNickname, BorderLayout.CENTER);
+		pnlHeader.add(imgPnlBunnies, BorderLayout.CENTER);
 
 		// Hand panel
-		pnlHand.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 		// Loading first HAND_SIZE cards to the hand.
 		for (int i = 0; i < cardsIds.size(); i++) {
@@ -90,18 +96,39 @@ public class PlayerWindow extends JFrame {
 		}
 
 		// Scores panel
-		pnlScores.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-		// Main panel visual settings
+		// Frame visual settings
 		add(pnlMain);
 		setTitle("DiXit");
-		setSize(1024, 960);
+		setSize(Constants.PNL_MAIN_HEIGHT, Constants.PNL_MAIN_WIDTH);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
+	public class ImagePanel extends JPanel {
+		private static final long serialVersionUID = 221227307122900452L;
+
+		public ImagePanel() {
+			try {
+				imgBunnies = ImageIO.read(new File(Constants.BUNNIES_PATH));
+			} catch (IOException ex) {
+				JOptionPane error = new JOptionPane(
+						"Could not find or open desired file.",
+						JOptionPane.ERROR_MESSAGE);
+				error.createDialog("Error").setVisible(true);
+			}
+		}
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(imgBunnies, 0, 0, null);
+		}
+
+	}
+
 	public static void main(String[] args) {
-		//new PlayerWindow();
+		// new PlayerWindow();
 	}
 }
