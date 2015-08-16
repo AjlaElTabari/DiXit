@@ -12,7 +12,7 @@ public class Constants {
 	public static final String LOGIN_BACKGROUND_IMAGE = "src/login/dixit.jpg";
 	public static final String CARDS_IMAGES_PATH = "src/gui/images/";
 	public static final String BUNNIES_PATH = "src/gui/bunnies.jpg";
-	public static final String BUNNY_PATH = "src/gui/bunny.jpg";
+	public static final String BUNNY_PATH = "src/gui/bunnies.jpg";
 
 	public static final int PNL_MAIN_WIDTH = 960;
 	public static final int PNL_MAIN_HEIGHT = 1024;

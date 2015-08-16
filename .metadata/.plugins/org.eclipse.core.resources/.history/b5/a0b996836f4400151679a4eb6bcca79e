@@ -1,0 +1,46 @@
+package gui;
+
+import gui.PlayerWindow.ImagePanel;
+
+import java.awt.image.BufferedImage;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+/**
+ * Represents a window that will contain only one text box. Current player will
+ * have to choose a card from his/her hand and to enter association for that
+ * card in this text box. When association is sent to the server, server will
+ * distribute the message to all other players.
+ * 
+ * @author ajla
+ *
+ */
+public class Association extends JFrame {
+
+	private static final long serialVersionUID = -9175086981558840577L;
+	private JPanel pnlMain = new JPanel();
+	private ImagePanel imgPnlBunny = new ImagePanel();
+	private JTextField txtAssociation = new JTextField();
+	private JButton btnSend = new JButton("Send");	// BufferedImage
+	private BufferedImage imgBunny;
+	
+	public Association () {
+		
+		// Frame visual settings
+		add(pnlMain);
+		setTitle("Enter your association");
+		setSize(300, 100);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		new Association();
+
+	}
+
+}

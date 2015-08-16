@@ -1,0 +1,40 @@
+package gui;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import common.Constants;
+
+/**
+ * Represents a window that will contain only one text box. Current player will
+ * have to choose a card from his/her hand and to enter association for that
+ * card in this text box. When association is sent to the server, server will
+ * distribute the message to all other players.
+ * 
+ * @author ajla
+ *
+ */
+public class Association extends JFrame {
+
+	private static final long serialVersionUID = -9175086981558840577L;
+	private JPanel pnlMain = new JPanel("Enter your association");
+	private JTextField txtAssociation = new JTextField();
+	
+	public Association () {
+		
+		// Frame visual settings
+		add(pnlMain);
+		setTitle("DiXit");
+		setSize(50, 300);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
