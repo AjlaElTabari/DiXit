@@ -42,8 +42,9 @@ public class Client {
 			String line = "";
 
 			// Expecting first dealing of HAND_SIZE cards from the server.
+			line = reader.readLine();
+			System.out.println(line);
 			while ((line = reader.readLine()) != null) {
-				System.out.println("111111111");
 				System.out.println(line);
 				System.out.println("Client " + line);
 				cardsIds.add(Integer.parseInt(line));
