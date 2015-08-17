@@ -46,4 +46,26 @@ public class Player {
 			writer = null;
 		}
 	}
+
+	// Getters and setters
+	public boolean isCurrentPlayer() {
+		return isCurrentPlayer;
+	}
+
+	public void setCurrentPlayer(boolean isCurrentPlayer) {
+		this.isCurrentPlayer = isCurrentPlayer;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}	
+	
 }

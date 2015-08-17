@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import obj.Deck;
+import obj.Move;
 import obj.Player;
 
 import common.Constants;
@@ -25,7 +26,8 @@ import common.Constants;
 public class Server {
 	// Server attributes
 	private static ServerSocket server;
-	private static ArrayList<Player> playerList;
+	public static ArrayList<Player> playerList;
+	public static ArrayList<Move> moves;
 	private static Deck deck;
 
 	/**
@@ -121,6 +123,8 @@ public class Server {
 					player = new Player(nickname, true, client);
 				}
 				playerList.add(player);
+				
+				
 
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -1,10 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +22,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import obj.Card;
+import obj.Move;
+import obj.Player;
 
 import common.Constants;
+
+import connectivity.Server;
 
 /**
  * GUI representation of players window. Allows player to see his/hers card,
@@ -35,6 +40,8 @@ public class PlayerWindow extends JFrame {
 	private static final long serialVersionUID = -3135347825165707732L;
 	private static Map<Integer, BufferedImage> cards = new HashMap<>();
 	private static ArrayList<Card> hand = new ArrayList<>();
+	
+
 
 	// Panels
 	private JPanel pnlMain = new JPanel();
@@ -58,7 +65,7 @@ public class PlayerWindow extends JFrame {
 		// Loading all images to the map
 		HelperMethods.loadCardImages(cards);
 		System.out.println(cards);
-		
+
 		// Buttons settings
 		btnNickname.setPreferredSize(new Dimension(124, 100));
 		btnDraw.setPreferredSize(new Dimension(124, 100));
@@ -92,6 +99,27 @@ public class PlayerWindow extends JFrame {
 
 			buttonIcon = cards.get(cardsIds.get(i));
 			btnCard = new JButton(new ImageIcon(buttonIcon));
+			
+			Card currentCard = new Card(i, cards.get(cardsIds.get(i)));
+			hand.add(currentCard);
+			
+			btnCard.addMouseListener(new MouseAdapter() {
+
+				public void mouseClicked(MouseEvent arg0) {
+					for (int i = 0; i < Server.playerList.size(); i++) {
+						Player player = Server.playerList.get(i);
+						System.out.println(player.getNickname().equals(nickname));
+						if (player.getNickname().equals(nickname)) {
+							if (player.isCurrentPlayer()) {
+								Server.moves.add(new Move(currentCard, player));
+								
+								new Association();
+							}
+						}
+					}	
+				}				
+			});
+
 			pnlHand.add(btnCard);
 		}
 

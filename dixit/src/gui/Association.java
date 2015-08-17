@@ -75,10 +75,4 @@ public class Association extends JFrame {
 		}
 
 	}
-
-	public static void main(String[] args) {
-		new Association();
-
-	}
-
 }
