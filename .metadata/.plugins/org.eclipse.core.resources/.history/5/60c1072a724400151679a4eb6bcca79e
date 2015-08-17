@@ -113,13 +113,8 @@ public class Server {
 				nickname = reader.readLine();
 				System.out.println(nickname);
 				
-				// Checking if this is the first client/player
-				Player player = null;
-				if (playerList.size() > 0) {
-					player = new Player(nickname, false, client);		
-				} else {
-					player = new Player(nickname, true, client);
-				}
+				// Checking if this is the firs client/player
+				Player player = new Player(nickname, false, client);
 				playerList.add(player);
 
 			} catch (IOException e) {
