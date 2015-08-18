@@ -106,17 +106,21 @@ public class PlayerWindow extends JFrame {
 			btnCard.addMouseListener(new MouseAdapter() {
 
 				public void mouseClicked(MouseEvent arg0) {
-					for (int i = 0; i < Server.playerList.size(); i++) {
-						Player player = Server.playerList.get(i);
-						System.out.println(player.getNickname().equals(nickname));
-						if (player.getNickname().equals(nickname)) {
-							if (player.isCurrentPlayer()) {
-								Server.moves.add(new Move(currentCard, player));
-								
-								new Association();
-							}
-						}
-					}	
+					//Server.moves.add(new Move(currentCard, player));
+					
+					new AssociationSending();
+					
+//					for (int i = 0; i < Server.playerList.size(); i++) {
+//						Player player = Server.playerList.get(i);
+//						System.out.println(player.getNickname().equals(nickname));
+//						if (player.getNickname().equals(nickname)) {
+//							if (player.isCurrentPlayer()) {
+//								Server.moves.add(new Move(currentCard, player));
+//								
+//								new Association();
+//							}
+//						}
+//					}	
 				}				
 			});
 

@@ -24,6 +24,7 @@ public class Client {
 
 	// Client attributes
 	private static ArrayList<Integer> cardsIds = new ArrayList<>();
+	private static BufferedWriter writer = null;
 
 	/**
 	 * Connects client to the server, opens new player window, and deals first
@@ -49,7 +50,7 @@ public class Client {
 			
 			// Declaring and initializing Buffered writer to be able to send 
 			// data to the server.
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+			writer = new BufferedWriter(new OutputStreamWriter(
 					client.getOutputStream()));
 			
 			writer.write(nickname);
@@ -65,5 +66,4 @@ public class Client {
 		}
 		
 	}
-
 }

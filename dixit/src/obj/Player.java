@@ -46,6 +46,16 @@ public class Player {
 			writer = null;
 		}
 	}
+	
+	public void sendMessage(String msg) {
+		try {
+			writer.write(msg);
+			writer.newLine();
+			writer.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// Getters and setters
 	public boolean isCurrentPlayer() {

@@ -17,6 +17,7 @@ public class LoginWindow extends JFrame {
         window.add(pnlBackground);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setSize(800, 800);
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
 	

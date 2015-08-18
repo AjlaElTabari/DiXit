@@ -14,3 +14,7 @@
 1439737854076	Rename field 'bg'
 1439740984752	Rename local variable 'in'
 1439762614959	Rename field 'btnDice'
+1439850674397	Rename field 'FIRST_INDEX'
+1439855308523	Copy compilation unit
+1439855320705	Rename type 'Association'
+1439855416103	Rename field 'btnSend'

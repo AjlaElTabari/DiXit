@@ -1,5 +1,7 @@
 package connectivity;
 
+import gui.AssociationReceiving;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -12,7 +14,6 @@ import java.util.ArrayList;
 import obj.Deck;
 import obj.Move;
 import obj.Player;
-
 import common.Constants;
 
 /**
@@ -125,6 +126,19 @@ public class Server {
 				playerList.add(player);
 				
 				
+				// Association
+				
+				String association = reader.readLine();
+				
+				for (int i = 0; i < playerList.size(); i++) {
+					writer.write(association);
+					writer.newLine();
+					writer.flush();
+					
+					new AssociationReceiving();
+				}
+				
+				System.out.println(association);
 
 			} catch (IOException e) {
 				e.printStackTrace();
